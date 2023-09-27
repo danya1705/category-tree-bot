@@ -17,9 +17,10 @@
 
 ## Запуск
 
-Для запуска требуется добавить в окружение переменную c Телеграм-токеном:
 
-`BotToken=1234567890:AAAAaa1aAaa1_AaAAaAAAA1aA11AaA1aaaa`
+Для запуска требуется вписать в VM-options свой Телеграм-токен:
+
+`-Dtelegram.bot.token=1234567890:AAAAaa1aAaa1_AaAAaAAAA1aA11AaA1aaaa`
 
 А также поднять базу данных PostgreSQL с параметрами из application.properties
 
