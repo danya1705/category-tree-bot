@@ -2,20 +2,19 @@ package com.github.danya1705.categorytreebot.bot;
 
 import com.github.danya1705.categorytreebot.command.CommandDispatcher;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 @Slf4j
-public class Bot extends TelegramLongPollingBot {
+public class BotListener extends TelegramLongPollingBot {
 
     private final CommandDispatcher dispatcher;
 
-    public Bot(CommandDispatcher dispatcher) {
-        super(System.getenv("BotToken"));
+    public BotListener(@Value("${telegram.bot.token}") String token, CommandDispatcher dispatcher) {
+        super(token);
         this.dispatcher = dispatcher;
     }
 
@@ -30,24 +29,7 @@ public class Bot extends TelegramLongPollingBot {
      */
     @Override
     public void onUpdateReceived(Update update) {
-
         log.info("Get update " + update.toString());
-
-        String returnMessage = dispatcher.handleUpdate(update, this);
-        if (returnMessage != null) {
-            sendMessage(update.getMessage().getChatId(), returnMessage);
-        }
+            dispatcher.handleUpdate(update);
     }
-
-    private void sendMessage(Long chatId, String textToSend) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(String.valueOf(chatId));
-        sendMessage.setText(textToSend);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            log.error("Произошла ошибка при попытке отправить сообщение в бот.", e);
-        }
-    }
-
 }
