@@ -27,17 +27,17 @@
 
 ## Техническое задание
 
-![Техническое задание](https://github.com/danya1705/category-tree-botListener/blob/master/tz.pdf)
+![Техническое задание](https://github.com/danya1705/category-tree-bot/blob/master/tz.pdf)
 
 ---
 
 ## База данных
 
 #### Схема БД:
-![Схема базы данных](https://github.com/danya1705/category-tree-botListener/blob/master/bd_scheme.jpg)
+![Схема базы данных](https://github.com/danya1705/category-tree-bot/blob/master/bd_scheme.jpg)
 
 #### Пример данных:
-![Пример данных](https://github.com/danya1705/category-tree-botListener/blob/master/bd_example.jpg)
+![Пример данных](https://github.com/danya1705/category-tree-bot/blob/master/bd_example.jpg)
 
 Путь в поле path формируется следующим образом: корневые элементы имеют в качестве 
 пути пустую строку, а у остальных путь складывается из пути родительского элемента,
